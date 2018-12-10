@@ -6,27 +6,77 @@
 // denoted by n!, is the product of all positive integers less than or equal to n.
 // Example: 5! = 5 x 4 x 3 x 2 x 1 = 120
 // factorial(5); // 120
-var factorial = function(n) {
+var factorial = function(num) {
+	//base case:
+
+if (num === 0 || num ===1) {
+	return 1;
+}
+if(num <=0){
+	return null;
+}  
+// recursive case:
+var result = num*factorial(num-1);
+return result;
+
 };
 
 // 2. Compute the sum of an array of integers.
 // sum([1,2,3,4,5,6]); // 21
-var sum = function(array) {
+var sum = function(array) {      
+
+	if(array.length === 0){
+		return 0;
+	}
+	return array[0] + sum(array.slice(1));  
+
 };
 
 // 3. Sum all numbers in an array containing nested arrays.
 // arraySum([1,[2,3],[[4]],5]); // 15
 var arraySum = function(array) {
+	let sum = 0;
+	for (let i = 0; i < array.length; i++) {
+		let num = array[i];
+		if (Array.isArray(num)) {
+			sum+= arraySum(num);
+		}
+	  else {
+		  sum+=num;
+	  }
+  }
+  return sum;
+
 };
 
 // 4. Check if a number is even.
 var isEven = function(n) {
+   if(n<0){
+    return isEven(n+2)
+  }
+  if(n === 1){
+    return false;
+  } else if(n === 0){
+    return true
+  } else {
+    return isEven(n-2)
+  }
 };
 
 // 5. Sum all integers below a given integer.
 // sumBelow(10); // 45
 // sumBelow(7); // 21
 var sumBelow = function(n) {
+	 var num = n-1;
+  if(n<0){
+    num =n+1
+  }
+  
+  if(n===0){
+    return 0
+  }
+ 
+  return num + sumBelow(num) 
 };
 
 // 6. Get the integers within a range (x, y).
@@ -40,6 +90,16 @@ var range = function(x, y) {
 // exponent(4,3); // 64
 // https://www.khanacademy.org/computing/computer-science/algorithms/recursive-algorithms/a/computing-powers-of-a-number
 var exponent = function(base, exp) {
+	var nBase = base 
+  var nExp = exp - 1
+  if(exp <0){
+    nBase = 1/base 
+    nExp = exp + 1
+  }
+  if(exp ===0){
+    return 1
+  }
+  return nBase * exponent(base,nExp)
 };
 
 // 8. Determine if a number is a power of two.
@@ -51,6 +111,10 @@ var powerOfTwo = function(n) {
 
 // 9. Write a function that reverses a string.
 var reverse = function(string) {
+	if(string.length===0){
+    return '';
+  }
+  return reverse(string.substr(1)) + string[0]
 };
 
 // 10. Write a function that determines if a string is a palindrome.
