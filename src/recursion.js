@@ -165,11 +165,34 @@ return palindrome(str.slice(1,-1))
 // modulo(17,5) // 2
 // modulo(22,6) // 4
 var modulo = function(x, y) {
+
+
 };
 
 // 12. Write a function that multiplies two numbers without using the * operator or
 // Math methods.
 var multiply = function(x, y) {
+
+ var multiple = x;
+  if(y === 0){
+    return 0;
+  }
+  if(x <0){
+    var newX = -x
+  }
+  if(y<0){
+    var newY = -y+1
+  }
+
+
+  if(y===1){
+    return multiple
+  }
+  if(y > 0){
+  multiple += multiply(x,y-1)
+  }
+  return multiple
+
 };
 
 // 13. Write a function that divides two numbers without using the / operator or
